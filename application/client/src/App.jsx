@@ -1,5 +1,6 @@
 import './App.css';
-import Navbar from './components/navbar/Navbar';
+import React from 'react';
+import Navbar from './components/Navbar';
 import { useState, useEffect } from "react";
 
 // functions
@@ -18,10 +19,11 @@ function App() {
 
 
   return (
-    <div>
+    <React.Fragment>
       <Navbar />
       {data}
-    </div>
+    </React.Fragment>
+    
   );
 }
 
