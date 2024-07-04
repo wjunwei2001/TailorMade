@@ -24,6 +24,15 @@ header {
     color: var(--textColor); 
 }
 
+.app-name {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--textColor);
+    text-decoration: none;
+}
+
 nav a {
     margin: 0 2rem;
     color: var(--textColor);
@@ -64,12 +73,13 @@ header .nav-btn {
         justify-content: center;
         gap: 1.5rem;
         background-color: var(--mainColor);
-        transition: 1s;
+        transition: 0.5s;
         transform: translateY(-100vh);
     }
 
     header .responsive_nav {
         transform: none;
+        z-index: 69;
     }
 
 

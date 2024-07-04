@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import Navbar from './components/Navbar';
+import Form from './components/Form'
 import { useState, useEffect } from "react";
 
 // functions
@@ -21,7 +22,7 @@ function App() {
   return (
     <React.Fragment>
       <Navbar />
-      {data}
+      <Form />
     </React.Fragment>
     
   );
