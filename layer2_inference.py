@@ -12,7 +12,7 @@ from sentence_transformers import SentenceTransformer, losses
 model = SentenceTransformer("wjunwei/ecommerce_text_embedding_retrieval_v2")
 
 ################ Preprocess data and produce embedding (only need to do once for the entire dataset) ######################3
-# df = pd.read_csv("amazon_data/amazon_data.csv")
+# df = pd.read_csv("dataset/amazon_sample_data.csv")
 # df['description'].replace(np.nan, '', inplace=True)
 # df['ecommerce_text'] = df['title'] + ' ' + df['description']
 # df['ecommerce_text'] = df['ecommerce_text'].str.lower()
@@ -21,7 +21,7 @@ model = SentenceTransformer("wjunwei/ecommerce_text_embedding_retrieval_v2")
 
 # # Get text embeddings of all products beforehand to avoid latency problem
 # df['product_embedding'] = df['ecommerce_text'].apply(lambda x: model.encode(x).tolist())
-# df.to_csv('amazon_data/amazon_data_encoded.csv')
+# df.to_csv('dataset/amazon_sample_data_encoded.csv')
 
 new_df = pd.read_csv('amazon_data/amazon_data_encoded.csv')
 
