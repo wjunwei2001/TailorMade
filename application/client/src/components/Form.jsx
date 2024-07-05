@@ -7,9 +7,11 @@ recipient location: textbox
 receiving date/time: textbox?
 */
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "../styles/Form.css";
 
 function Form() {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         Category: "",
@@ -31,27 +33,36 @@ function Form() {
         setFormData(inputData);
     };
 
+
+    
     // not tested, taken from gfg
     const handlePredictClick = () => {
-        const url = "http://localhost:5000/predict";
-        setIsLoading(true);
-        console.log("Predict was called with:", formData);
-        const jsonData = JSON.stringify(formData);
+        // const url = "http://localhost:5000/predict";
+        // setIsLoading(true);
+        // console.log("Predict was called with:", formData);
+        // const jsonData = JSON.stringify(formData);
 
-        fetch(url, {
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-            body:jsonData,
-        })
-        .then((response) => response.json())
-        .then((response) => {
-            setResult(response.Prediction);
-            setIsLoading(false);
-            setShowResults(true);
-        });
+        // fetch(url, {
+        //     headers: {
+        //         Accept: "application/json",
+        //         "Content-Type": "application/json",
+        //     },
+        //     method: "POST",
+        //     body:jsonData,
+        // })
+        // .then((response) => response.json())
+        // .then((response) => {
+        //     setResult(response.Prediction);
+        //     setIsLoading(false);
+        //     setShowResults(true);
+        // });
+
+        const dummyData = [
+            { id: 1, name: 'Object 1', value: 'Value 1' },
+            { id: 2, name: 'Object 2', value: 'Value 2' },
+            { id: 3, name: 'Object 3', value: 'Value 3' },
+          ];
+        navigate('/recommendations', { state: { jsonData: dummyData } });
     };
 
     return (

@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
+import Recommendations from './pages/Recommendations';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/recommendations" element={<Recommendations /> } />
       </Routes>
     </Router>
     
