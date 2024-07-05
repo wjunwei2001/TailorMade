@@ -35,8 +35,10 @@ function Form() {
 
 
     
-    // not tested, taken from gfg
+    
     const handlePredictClick = () => {
+        // retrieve and run ML model -> retrieve listings -> pass into Recommendations
+
         // const url = "http://localhost:5000/predict";
         // setIsLoading(true);
         // console.log("Predict was called with:", formData);
@@ -58,9 +60,27 @@ function Form() {
         // });
 
         const dummyData = [
-            { id: 1, name: 'Object 1', value: 'Value 1' },
-            { id: 2, name: 'Object 2', value: 'Value 2' },
-            { id: 3, name: 'Object 3', value: 'Value 3' },
+            {
+              _id: "100001",
+              img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              productName: "Round Table Clock",
+              price: "44.00",
+              color: "Black",
+            },
+            {
+              _id: "100002",
+              img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              productName: "Round Table Cock",
+              price: "44.00",
+              color: "Black",
+            },
+            {
+              _id: "100003",
+              img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              productName: "Round Table Clock",
+              price: "44.00",
+              color: "Black",
+            }
           ];
         navigate('/recommendations', { state: { jsonData: dummyData } });
     };
