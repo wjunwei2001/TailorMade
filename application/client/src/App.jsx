@@ -1,7 +1,8 @@
 import './App.css';
 import React from 'react';
-import Navbar from './components/Navbar';
-import Form from './components/Form'
+import Home from './pages/Home';
+import About from './pages/About';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
 // functions
@@ -20,10 +21,12 @@ function App() {
 
 
   return (
-    <React.Fragment>
-      <Navbar />
-      <Form />
-    </React.Fragment>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
     
   );
 }
