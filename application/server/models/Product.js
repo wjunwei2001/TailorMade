@@ -53,12 +53,12 @@ const productSchema = new Schema({
     type: Boolean
   },
   predicted_trendiness: {
-    type: mongoose.Types.Decimal128,
+    type: Number,
     min: [0, 'Predicted trendiness must be between 0 and 1'],
     max: [1, 'Predicted trendiness must be between 0 and 1'],
   },
   predicted_uniqueness: {
-    type: mongoose.Types.Decimal128,
+    type: Number,
     min: [0, 'Predicted uniqueness must be between 0 and 1'],
     max: [1, 'Predicted uniqueness must be between 0 and 1'],
   },
@@ -66,7 +66,7 @@ const productSchema = new Schema({
     type: String,
   },
   product_embedding: {
-    type: [mongoose.Types.Decimal128],
+    type: [Number],
   },
   deliver_to_singapore: {
     type: Boolean,
