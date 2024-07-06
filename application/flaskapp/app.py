@@ -11,8 +11,7 @@ from sentence_transformers import SentenceTransformer, losses
 #from flask_cors import CORS
 import pickle
 import json
-from interest_area_inference import recommend_products
-from similarity_score_inference import calculate_similarity, llm_similarity_score
+from recommender import final_recommend
 
 load_dotenv()
 app = Flask(__name__)
@@ -25,6 +24,9 @@ with open('dataset/network_theory.pickle', 'rb') as fe_data_file:
     G = pickle.load(fe_data_file)
 with open('dataset/betweenness_centrality.json', 'r') as json_file:
     BETWEENNESS_CENTRALITY = json.load(json_file)
+
+#EXAMPLE USAGE 
+# result = final_recommend(df, G, BETWEENNESS_CENTRALITY, user_input, llm)
 
 MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)

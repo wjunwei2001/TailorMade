@@ -23,7 +23,7 @@ model = SentenceTransformer("wjunwei/ecommerce_text_embedding_retrieval_v2")
 # df['product_embedding'] = df['ecommerce_text'].apply(lambda x: model.encode(x).tolist())
 # df.to_csv('dataset/amazon_sample_data_encoded.csv')
 
-new_df = pd.read_csv('amazon_data/amazon_data_encoded.csv')
+# new_df = pd.read_csv('amazon_data/amazon_data_encoded.csv')
 
 def calculate_similarity(embedding1, embedding2):
     return cosine_similarity([embedding1], [embedding2])
@@ -32,6 +32,7 @@ def llm_similarity_score(df, model, recipient, style):
     user_input = f"query: Does this product meet the needs of a {recipient} who is looking for {style} products?"
     user_input_embedding = model.encode(user_input)
 
+    df['product_embedding'] = df['product_embedding'].apply(eval)
     similarities = []
     for product_embedding in df['product_embedding']:
         similarity = calculate_similarity(user_input_embedding, product_embedding)
@@ -41,7 +42,8 @@ def llm_similarity_score(df, model, recipient, style):
     return df
 
 #### Example usage
-# df = llm_similarity_score(df, model, "mother", "minimalistic") 
+df = pd.read_csv("dataset/product_sample.csv")
+df = llm_similarity_score(df, model, "mother", "minimalistic") 
 
 
 
