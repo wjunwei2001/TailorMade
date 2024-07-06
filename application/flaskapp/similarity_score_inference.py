@@ -32,7 +32,7 @@ def llm_similarity_score(df, model, recipient, style):
     user_input = f"query: Does this product meet the needs of a {recipient} who is looking for {style} products?"
     user_input_embedding = model.encode(user_input)
 
-    df['product_embedding'] = df['product_embedding'].apply(eval)
+    # df['product_embedding'] = df['product_embedding'].apply(eval)
     similarities = []
     for product_embedding in df['product_embedding']:
         similarity = calculate_similarity(user_input_embedding, product_embedding)
@@ -42,8 +42,8 @@ def llm_similarity_score(df, model, recipient, style):
     return df
 
 #### Example usage
-df = pd.read_csv("dataset/product_sample.csv")
-df = llm_similarity_score(df, model, "mother", "minimalistic") 
+#df = pd.read_csv("dataset/product_sample.csv")
+#df = llm_similarity_score(df, model, "mother", "minimalistic") 
 
 
 

@@ -34,7 +34,7 @@ def recommend_products(given_wishlist, G, BETWEENNESS_CENTRALITY, overall_data):
                 
                 for neighbor in additional_neighbors:
                     if neighbor in sub_category_list_2:
-                        result_categories.add(neighbor)
+                        result_categories.append(neighbor)
                     if len(result_categories) >= 20:
                         break
             if len(result_categories) >= 20:

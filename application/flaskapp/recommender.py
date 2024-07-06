@@ -9,17 +9,17 @@ from sklearn.preprocessing import MinMaxScaler
 
 def final_recommend(df, G, BETWEENNESS_CENTRALITY, user_input, llm):
     # Extract user input
-    max_delivery_time = user_input["time"]
+    max_delivery_time = int(user_input["time"])
     user_location = user_input["location"]
-    price_preference = user_input["price_preference"] # 1 for competitively priced, 0 for more expensive
+    price_preference = int(user_input["price_preference"]) # 1 for competitively priced, 0 for more expensive
     recipient = user_input["recipient"]
     design_style = user_input["design_style"]
-    trendiness_or_unique = user_input["trendiness_or_unique"] # 1 for trendy, 0 got unique
+    trendiness_or_unique = int(user_input["trendiness_or_unique"]) # 1 for trendy, 0 got unique
     interest_area = user_input["interest_area"]
 
     # Filter out those who are not available
     df.dropna(subset=['is_available'], inplace=True)
-    df = df[~df['is_available'].isin(["Not Available", "Temporarily out of stock."])]
+    df = df[df['is_available'] != False]
 
     # Filter out products which does not meet time and location requirements
     user_location = "deliver_to_" + user_location
@@ -41,7 +41,7 @@ def final_recommend(df, G, BETWEENNESS_CENTRALITY, user_input, llm):
 
     # Filter by price preference 
     df["price"] = df["sale_price"].fillna(df["original_price"])
-    df["price"] = df["price"].str.replace(',', '').str.replace('$', '').astype(float)
+    # df["price"] = df["price"].str.replace(',', '').str.replace('$', '').astype(float)
     df["average_price"] = df.groupby("sub_category_2")["price"].transform("mean") # average price is computed within each sub category 2 to find out whether a product is below or above market average
     if price_preference == 1: # user wants competitively priced
         df = df[df['price'] >= df['average_price']]
