@@ -1,11 +1,3 @@
-/* Interest area: category, text box
-Price preference: affordable/pricey, dropdown
-Trendiness: trendy/unique, dropdown
-Design style: description, text box
-recipient: describe recipient, text box
-recipient location: textbox
-receiving date/time: textbox?
-*/
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../styles/Form.css";
@@ -14,13 +6,13 @@ function Form() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
-        Category: "",
-        Price_Preference: "",
-        Trendiness: "",
-        Design_Style: "",
-        Recipient_Description: "",
-        Recipient_Location: "",
-        Receiving_Date: "",
+        interest_area: "",
+        price_preference: "",
+        trendiness_or_unique: "",
+        design_style: "",
+        recipient: "",
+        location: "",
+        time: "",
     });
     const [result, setResult] = useState("");
     const [showResults, setShowResults] = useState(false);
@@ -36,81 +28,82 @@ function Form() {
     const handlePredictClick = () => {
         // retrieve and run ML model -> retrieve listings -> pass into Recommendations
 
-        // const url = "http://localhost:5000/predict";
-        // setIsLoading(true);
-        // console.log("Predict was called with:", formData);
-        // const jsonData = JSON.stringify(formData);
+        const url = "http://127.0.0.1:5000/predict";
+        setIsLoading(true);
+        console.log("Predict was called with:", formData);
+        const jsonData = JSON.stringify(formData);
 
-        // fetch(url, {
-        //     headers: {
-        //         Accept: "application/json",
-        //         "Content-Type": "application/json",
+        fetch(url, {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body:jsonData,
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            console.log(response)
+            setResult(response);
+            setIsLoading(false);
+            setShowResults(true);
+            navigate('/recommendations', { state: { jsonData: response } });
+        });
+
+        // const dummyData = [
+        //     {
+        //       _id: "100001",
+        //       img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        //       productName: "Round Table Clock",
+        //       price: "44.00",
+        //       color: "Black",
         //     },
-        //     method: "POST",
-        //     body:jsonData,
-        // })
-        // .then((response) => response.json())
-        // .then((response) => {
-        //     setResult(response.Prediction);
-        //     setIsLoading(false);
-        //     setShowResults(true);
-        // });
-
-        const dummyData = [
-            {
-              _id: "100001",
-              img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-              productName: "Round Table Clock",
-              price: "44.00",
-              color: "Black",
-            },
-            {
-              _id: "100002",
-              img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-              productName: "Round Table Cock",
-              price: "44.00",
-              color: "Black",
-            },
-            {
-              _id: "100003",
-              img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-              productName: "Round Table Clock",
-              price: "44.00",
-              color: "Black",
-            }
-          ];
-        navigate('/recommendations', { state: { jsonData: dummyData } });
+        //     {
+        //       _id: "100002",
+        //       img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        //       productName: "Round Table Cock",
+        //       price: "44.00",
+        //       color: "Black",
+        //     },
+        //     {
+        //       _id: "100003",
+        //       img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        //       productName: "Round Table Clock",
+        //       price: "44.00",
+        //       color: "Black",
+        //     }
+        //   ];
     };
 
     return (
         <div className="form-container">
             <form method="post" acceptCharset="utf-8">
                 <div className="form-group">
-                    <label>Category of Product:
+                    <label>interest_area of Product:
                         <input
                         type="text"
                         className="form-control"
-                        id="Category"
-                        name="Category"
-                        value={formData.Category}
+                        id="interest_area"
+                        name="interest_area"
+                        value={formData.interest_area}
                         onChange={handleChange}
                         placeholder="Electronics, Apparel etc."/>
                     </label>
                 </div>
                 <div className="form-group">
-                    <label>Trendiness of Product:
+                    <label>trendiness_or_unique of Product:
                         <select
                         className="dropdown form-control"
-                        id="Trendiness"
-                        name="Trendiness"
-                        value={formData.Trendiness}
+                        id="trendiness_or_unique"
+                        name="trendiness_or_unique"
+                        value={formData.trendiness_or_unique}
                         onChange={handleChange}
                         required>
                             <option value={""} disabled>
                                 Select Trendy or Unique
                             </option>
-                            <option value="0">Unique</option>
                             <option value="1">Trendy</option>
+                            <option value="0">Unique</option>
                         </select>
                     </label>
                 </div>
@@ -119,9 +112,9 @@ function Form() {
                         <input
                         type="text"
                         className="form-control"
-                        id="Design_Style"
-                        name="Design_Style"
-                        value={formData.Design_Style}
+                        id="design_style"
+                        name="design_style"
+                        value={formData.design_style}
                         onChange={handleChange}
                         placeholder="Describe your ideal product"/>
                     </label>
@@ -130,13 +123,13 @@ function Form() {
                     <label>Price Preference:
                         <select
                         className="dropdown form-control"
-                        id="Price_Preference"
-                        name="Price_Preference"
-                        value={formData.Price_Preference}
+                        id="price_preference"
+                        name="price_preference"
+                        value={formData.price_preference}
                         onChange={handleChange}
                         required>
                             <option value={""} disabled>
-                                Select your preferred price
+                                Select your preferred price point
                             </option>
                             <option value="0">Affordable</option>
                             <option value="1">Pricey</option>
@@ -148,23 +141,28 @@ function Form() {
                         <input
                         type="text"
                         className="form-control"
-                        id="Recipient_Description"
-                        name="Recipient_Description"
-                        value={formData.Recipient_Description}
+                        id="recipient"
+                        name="recipient"
+                        value={formData.recipient}
                         onChange={handleChange}
                         placeholder="Describe your product recipient"/>
                     </label>
                 </div>
                 <div className="form-group">
-                    <label> Recipient Location:
-                        <input
-                        type="text"
-                        className="form-control"
-                        id="Recipient_Location"
-                        name="Recipient_Location"
-                        value={formData.Recipient_Location}
+                    <label>Recipient Location:
+                        <select
+                        className="dropdown form-control"
+                        id="location"
+                        name="location"
+                        value={formData.location}
                         onChange={handleChange}
-                        placeholder="Location"/>
+                        required>
+                            <option value={""} disabled>
+                                Select the recipient's country
+                            </option>
+                            <option value="singapore">Singapore</option>
+                            <option value="malaysia">Malaysia</option>
+                        </select>
                     </label>
                 </div>
                 <div className="form-group">
@@ -172,11 +170,11 @@ function Form() {
                         <input
                         type="text"
                         className="form-control"
-                        id="Receiving_Date"
-                        name="Receiving_Date"
-                        value={formData.Receiving_Date}
+                        id="time"
+                        name="time"
+                        value={formData.time}
                         onChange={handleChange}
-                        placeholder="Date and Time"/>
+                        placeholder="Number of days from today"/>
                     </label>
                 </div>
                 <div className="form-group">
