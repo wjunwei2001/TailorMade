@@ -32,9 +32,6 @@ function Form() {
         inputData[name] = value;
         setFormData(inputData);
     };
-
-
-    
     
     const handlePredictClick = () => {
         // retrieve and run ML model -> retrieve listings -> pass into Recommendations
