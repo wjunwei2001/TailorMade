@@ -3,6 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const fs = require('fs');
+const csv = require('csv-parser');
+const Product = require('./models/Product');
 require("dotenv").config();
 
 
