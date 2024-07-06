@@ -1,5 +1,3 @@
-# Commented parts not tested, just taken from gfg, supposedly code for integrating model into the app.
-
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -11,14 +9,22 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer, losses
 #import pandas as pd
 #from flask_cors import CORS
-#import pickle
+import pickle
+import json
+from interest_area_inference import recommend_products
+from similarity_score_inference import calculate_similarity, llm_similarity_score
 
 load_dotenv()
 app = Flask(__name__)
 
 #CORS(app, resources={r"/*":{"origins:"*""}})
-#model = pickle.load(open('ml_model.pkl', 'rb'))
+
+# LOAD ALL NECESSARY MODELS
 llm = SentenceTransformer("wjunwei/ecommerce_text_embedding_retrieval_v2")
+with open('dataset/network_theory.pickle', 'rb') as fe_data_file:
+    G = pickle.load(fe_data_file)
+with open('dataset/betweenness_centrality.json', 'r') as json_file:
+    BETWEENNESS_CENTRALITY = json.load(json_file)
 
 MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
