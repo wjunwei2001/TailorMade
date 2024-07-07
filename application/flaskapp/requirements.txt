@@ -2,3 +2,9 @@ Flask
 pymongo[srv]
 Flask-PyMongo
 python-dotenv
+scikit-learn
+flask-cors
+certifi
+spacy
+pandas
+sentence_transformers

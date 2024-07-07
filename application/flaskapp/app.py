@@ -12,6 +12,7 @@ from flask_cors import CORS
 import pickle
 import json
 from recommender import final_recommend
+# After installing spacy, run 'python -m spacy download en_core_web_sm'
 
 load_dotenv()
 app = Flask(__name__)

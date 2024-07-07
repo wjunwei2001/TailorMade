@@ -79,7 +79,7 @@ function Form() {
         <div className="form-container">
             <form method="post" acceptCharset="utf-8">
                 <div className="form-group">
-                    <label>interest_area of Product:
+                    <label>Category of Product:
                         <input
                         type="text"
                         className="form-control"
@@ -91,7 +91,7 @@ function Form() {
                     </label>
                 </div>
                 <div className="form-group">
-                    <label>trendiness_or_unique of Product:
+                    <label>Trendiness of Product:
                         <select
                         className="dropdown form-control"
                         id="trendiness_or_unique"
