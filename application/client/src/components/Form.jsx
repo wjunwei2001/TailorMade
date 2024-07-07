@@ -26,8 +26,6 @@ function Form() {
     };
     
     const handlePredictClick = () => {
-        // retrieve and run ML model -> retrieve listings -> pass into Recommendations
-
         const url = "http://127.0.0.1:5000/predict";
         setIsLoading(true);
         console.log("Predict was called with:", formData);
@@ -49,30 +47,6 @@ function Form() {
             setShowResults(true);
             navigate('/recommendations', { state: { jsonData: response } });
         });
-
-        // const dummyData = [
-        //     {
-        //       _id: "100001",
-        //       img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        //       productName: "Round Table Clock",
-        //       price: "44.00",
-        //       color: "Black",
-        //     },
-        //     {
-        //       _id: "100002",
-        //       img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        //       productName: "Round Table Cock",
-        //       price: "44.00",
-        //       color: "Black",
-        //     },
-        //     {
-        //       _id: "100003",
-        //       img: "https://images.pexels.com/photos/258244/pexels-photo-258244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        //       productName: "Round Table Clock",
-        //       price: "44.00",
-        //       color: "Black",
-        //     }
-        //   ];
     };
 
     return (

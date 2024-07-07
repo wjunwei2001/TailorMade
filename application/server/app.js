@@ -15,7 +15,7 @@ const app = express();
 // db
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('Successfully connected to database'))
-.catch((err) => console.log('Error connecting to databse', err));
+.catch((err) => console.log('Error connecting to database', err));
 
 // middleware
 app.use(morgan("dev"));
