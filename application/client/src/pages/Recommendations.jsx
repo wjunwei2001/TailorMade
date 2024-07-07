@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar2'
 import ProductCard from '../components/ProductCard'
 import Grid from '@mui/material/Grid';
 import { useLocation } from 'react-router-dom'
@@ -15,9 +15,9 @@ const Recommendations = () => {
   return (
     <React.Fragment>
         <Navbar />
-        <Grid container spacing={2}>
+        <Grid container spacing={0}>
         {state.jsonData.map((props, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+          <Grid item key={index} xs={6} sm={6} md={4} lg={3}>
             <ProductCard props={props} />
           </Grid>
         ))}

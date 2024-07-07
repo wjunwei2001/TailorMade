@@ -53,7 +53,7 @@ function Form() {
         <div className="form-container">
             <form method="post" acceptCharset="utf-8">
                 <div className="form-group">
-                    <label>Category of Product:
+                    <label>Interest Area:
                         <input
                         type="text"
                         className="form-control"
@@ -82,7 +82,7 @@ function Form() {
                     </label>
                 </div>
                 <div className="form-group">
-                    <label> Product Description:
+                    <label> Design Style:
                         <input
                         type="text"
                         className="form-control"
@@ -90,7 +90,7 @@ function Form() {
                         name="design_style"
                         value={formData.design_style}
                         onChange={handleChange}
-                        placeholder="Describe your ideal product"/>
+                        placeholder="Provide your desired style"/>
                     </label>
                 </div>
                 <div className="form-group">
@@ -106,7 +106,7 @@ function Form() {
                                 Select your preferred price point
                             </option>
                             <option value="0">Affordable</option>
-                            <option value="1">Pricey</option>
+                            <option value="1">Luxurious</option>
                         </select>
                     </label>
                 </div>

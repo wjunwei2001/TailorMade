@@ -29,20 +29,33 @@ export default function ProductCard( {props} ) {
     setImageSrc(categoryImageSrc);
   })
 
+  const truncateStyle = {
+    display: '-webkit-box',
+    overflow: 'hidden',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 3,
+    textOverflow: 'ellipsis',
+  };
+
   return (
-    <Card sx={{ width: '320', maxWidth: '100%', boxShadow: 'lg', m: 1}}>
+    <Card sx={{ width: '400', boxShadow: 'lg', m: 1}}>
       <CardOverflow>
-        <AspectRatio sx={{ minWidth: 200 }}>
+        <AspectRatio sx={{ minWidth: 150 }}>
           <img
             src={imageSrc}
             loading="lazy"
             alt="category image"
-            style={{ width: '320', height: 'auto' }}
+            style={{ width: '100%', height: 'auto' }}
           />
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography level="body-xs">{main_category}</Typography>
+      <Typography 
+          level="body-xs"
+          sx={{ ...truncateStyle, maxWidth: '100%' }}
+        >
+          {main_category}
+        </Typography>
         <Link
           href="/recommendations"
           fontWeight="md"
@@ -50,6 +63,7 @@ export default function ProductCard( {props} ) {
           textColor="text.primary"
           overlay
           endDecorator={<ArrowOutwardIcon />}
+          sx={{ ...truncateStyle, maxWidth: '100%' }}
         >
           {title}
         </Link>

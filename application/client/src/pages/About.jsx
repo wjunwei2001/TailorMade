@@ -5,7 +5,7 @@ const About = () => {
   return (
     <React.Fragment>
         <Navbar />
-        kong likes men
+        TailorMade
     </React.Fragment>
 
   )
