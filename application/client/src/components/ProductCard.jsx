@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { React, useState, useEffect } from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
@@ -10,26 +10,34 @@ import Typography from '@mui/joy/Typography';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import StarIcon from '@mui/icons-material/Star';
 
-export default function ProductCard({ props }) {
-  const {
-    title,
+export default function ProductCard( {props} ) {
+
+  const { title,
     price,
     rating,
     review_count,
     purchase_cnt_prev_month,
     store_name,
     main_category,
-    original_price
+    original_price 
   } = props;
+
+  const [imageSrc, setImageSrc] = useState('');
+
+  useEffect(() => {
+    const categoryImageSrc = `http://localhost:3000/images/${main_category}.jpg`;
+    setImageSrc(categoryImageSrc);
+  })
+
   return (
     <Card sx={{ width: '320', maxWidth: '100%', boxShadow: 'lg', m: 1}}>
       <CardOverflow>
         <AspectRatio sx={{ minWidth: 200 }}>
           <img
-            src="https://images.unsplash.com/photo-1593121925328-369cc8459c08?auto=format&fit=crop&w=286"
-            srcSet="https://images.unsplash.com/photo-1593121925328-369cc8459c08?auto=format&fit=crop&w=286&dpr=2 2x"
+            src={imageSrc}
             loading="lazy"
-            alt=""
+            alt="category image"
+            style={{ width: '320', height: 'auto' }}
           />
         </AspectRatio>
       </CardOverflow>

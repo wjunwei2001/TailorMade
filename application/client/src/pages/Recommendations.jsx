@@ -10,6 +10,8 @@ const Recommendations = () => {
   const { state } = location;
   
 
+ 
+
   return (
     <React.Fragment>
         <Navbar />
