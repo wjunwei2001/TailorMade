@@ -62,7 +62,7 @@ npm i
 7. On the same terminal, run the following command:
 ```bash
 echo "PORT=8000" >> .env
-echo "MONGO_URI=mongodb+srv://hackathon-user:g8esMZKpw9EkRRTv@cluster0.exvywqq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" >> .env
+echo "MONGO_URI=mongodb+srv://hackathon-user:<password>@cluster0.exvywqq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" >> .env
 ```
 
 8. On the same terminal, start up the backend server using
