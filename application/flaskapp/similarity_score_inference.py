@@ -50,7 +50,7 @@ def llm_similarity_score(df, model, recipient, style):
 ########################## API method (not used) ######################
 # import requests
 # API_URL = "https://api-inference.huggingface.co/models/wjunwei/ecommerce_text_embedding_retrieval_v2"
-# headers = {"Authorization": "Bearer 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"}
+# headers = {"Authorization": "Bearer hf_<USER_TOKEN>"}
 
 # def query_similarity(source_sentence, sentences):
 #     response = requests.post(API_URL, headers=headers, json={
